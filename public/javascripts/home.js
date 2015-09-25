@@ -119,7 +119,7 @@ $(document).ready(function () {
                 setStat("Message sent");
             }
             if (from == data.to) {
-                if ($('.tab-pane ul li').hasClass('selected') && to==data.to) {
+                if ($('.tab-pane ul li').hasClass('selected') && from==data.to) {
                     $('#chatWindow').append('<div class="lft triangle-right">' + data.msg + '<span class="ruser">' + data.to + '</span></div>')
                 }
             }
