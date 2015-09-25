@@ -68,8 +68,8 @@ $(document).ready(function () {
             if (e.keyCode == 13 && e.shiftKey == false) {
                 if ($('.tab-pane ul li').hasClass('selected')) {
                     var msg = $('#msg').val();
-
                     socket.emit('input', {from: from, to: to, msg: msg, read: false});
+                    $('#msg').val('');
                 } else {
                     setStat("Please select a user to send the message")
                 }
@@ -133,7 +133,7 @@ $(document).ready(function () {
 
 
         socket.on('count', function (s, u) {
-            console.log(u + " " + u.length);
+         
 
             if (u.length > 0) {
                 $('#onlineusers li,#allusers li').each(function () {
@@ -143,7 +143,7 @@ $(document).ready(function () {
                     u.forEach(function (t) {
 
                         if (v == t) {
-                            console.log(v + " " + t + " " + s[t]);
+                            
                             x.find('.badge').html(s[t]);
                         } else {
                             x.find('.badge').html("0");
