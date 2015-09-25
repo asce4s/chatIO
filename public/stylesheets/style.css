@@ -1,0 +1,264 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: #00B7FF;
+}
+
+#Login-title, #cAccount {
+    margin: 0 auto;
+    display: block;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+#login-wrap {
+    background: rgba(204, 204, 204, 0.3);
+    min-height: 50px;
+    margin: 0 auto;
+    clear: both;
+    float: none;
+    padding: 20px 20px;
+}
+
+#userAvt {
+    width: 26%;
+    margin: 25px auto;
+    display: block;
+}
+
+#reg .modal-dialog {
+    width: 30%;
+}
+
+#main {
+    background-color: rgba(204, 204, 204, 0.48);
+    min-height: 500px;
+    margin: 0 auto;
+    float: none;
+    border: 1px #B1B0B0 solid;
+}
+
+#users {
+    background-color: #fff;
+    height: 500px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    padding: 0;
+    border-left: rgba(204, 204, 204, 0.54) 1px solid;
+    border-bottom: rgba(204, 204, 204, 0.54) 1px solid;
+}
+
+#chat {
+    background-color: rgb(19, 18, 18);
+}
+
+.panel-body {
+    padding: 0px !important;
+}
+
+.tab-pane ul {
+    list-style: none;
+    padding-left: 0px;
+    margin: 0;
+}
+
+.tab-pane ul li {
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    border-bottom: #ccc 1px solid;
+    padding: 7px 2px 7px 24px;
+}
+
+.tab-pane ul li:hover {
+    background-color: rgba(204, 204, 204, 0.34);
+    color: #21B1EC;
+}
+
+#chatWindow {
+    margin: 10px 0px;
+    height: 365px;
+    background-color: #fff;
+    overflow-y: scroll;
+    padding: 10px;
+    background-color: rgb(19, 18, 18);
+}
+
+#stat {
+    margin-bottom: 10px;
+    display: block;
+    color: #8C8C8C;
+    font-size: 12px;
+}
+
+#msg {
+    max-width: 100%;
+    width: 100%;
+    max-height: 80px;
+    height: 80px;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: rgb(114, 114, 114);
+
+}
+
+#logout {
+    position: absolute;
+    right: 19px;
+    top: 24px;
+}
+
+.selected {
+    background-color: rgba(204, 204, 204, 0.37);
+}
+
+.rght {
+    text-align: right;
+    background-color: aliceblue;
+    width: 80%;
+    padding: 10px;
+    margin-top: 10px;
+    float: right;
+    margin-bottom: 10px;
+}
+
+.lft {
+    background-color: aliceblue;
+    width: 80%;
+    padding: 10px;
+    margin-top: 15px;
+    clear: both;
+}
+
+.triangle-right {
+    position: relative;
+    padding: 15px;
+    margin: 1em 0 3em;
+    color: #383333;
+    background: #f3961c; /* default background for browsers without gradient support */
+    /* css3 */
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#f9d835), to(#f3961c));
+    background: -moz-linear-gradient(#f9d835, #f3961c);
+    background: -o-linear-gradient(#f9d835, #f3961c);
+    background: linear-gradient(#f9d835, #f3961c);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.triangle-right:after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    left: 15px;
+    border-width: 20px 0 0 20px;
+    border-style: solid;
+    border-color: #f3961c transparent;
+    display: block;
+    width: 0;
+}
+
+.triangle-left {
+    position: relative;
+    padding: 15px;
+    margin: 1em 0 3em;
+    color: #fff;
+    background: #075698;
+
+    background: -webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));
+    background: -moz-linear-gradient(#2e88c4, #075698);
+    background: -o-linear-gradient(#2e88c4, #075698);
+    background: linear-gradient(#2e88c4, #075698);
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+}
+
+.triangle-left:after {
+    content: "";
+    position: absolute;
+    bottom: -20px;
+    right: 15px;
+    border-width: 20px 20px 0 0px;
+    border-style: solid;
+    border-color: #075698 transparent;
+    display: block;
+    width: 0;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.9);
+
+    background-color: #444444;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+
+    background-color: #D62929;
+    background-image: -webkit-linear-gradient(90deg,
+    transparent,
+    rgba(0, 0, 0, 0.4) 50%,
+    transparent,
+    transparent)
+}
+
+.luser {
+    position: absolute;
+    margin-Top: 37px;
+    right: 42px;
+    color: #868282;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.ruser {
+    position: absolute;
+    margin-top: 37px;
+    left: 41px;
+    color: #868282;
+    font-size: 11px;
+    font-style: italic;
+}
+
+.online {
+    width: 10px;
+    height: 10px;
+    display: inline-block;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.grn {
+    background-color: #33D647;
+}
+
+#nme {
+    position: absolute;
+    right: 38px;
+    top: 22px;
+    /* padding: 5px; */
+    width: 97px;
+    text-align: right;
+    text-overflow: ellipsis;
+}
+
+#nme > span {
+    margin-right: 2px
+}
+
+.badge {
+    background-color: #337ab7 !important;
+    float: right;
+    margin-right: 20px;
+
+}

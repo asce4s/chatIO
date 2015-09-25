@@ -1,0 +1,188 @@
+#!/usr/bin/env node
+
+/**
+ * Module dependencies.
+ */
+
+var app = require('../app');
+var debug = require('debug')('ChatIO:server');
+var http = require('http');
+//var mongo=require('mongodb').MongoClient;
+
+/**
+ * Get port from environment and store in Express.
+ */
+
+var port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+/**
+ * Create HTTP server.
+ */
+
+var server = http.createServer(app);
+var io = require('socket.io')(server);
+var db = require('../routes/func/dbfunc');
+var lodash = require('lodash');
+
+var users = {};
+io.on('connection', function (socket) {
+
+    var updateUserLists = function () {
+        io.emit('onlineUsers', Object.keys(users));
+        db.find('user', {username: {$ne:null}}, {username: true, _id: true}, function (d) {
+            io.emit('allUsers', d);
+        })
+        //updateCount(socket.nickname);
+    }
+    var updateCount = function (e) {
+        db.find('chat', {to: e, read: false}, {from: 1, _id: 0}, function (s) {
+            var unreadusers = [], i = 0, counts = {};
+            s.forEach(function (d) {
+                unreadusers[i] = (d.from);
+                i++;
+            })
+            var uniq = lodash.uniq(unreadusers);
+
+            uniq.forEach(function (u) {
+                var c = 0;
+                unreadusers.forEach(function (un) {
+                    if (u == un)
+                        c++
+                })
+                counts[u]=c;
+            })
+            socket.emit('count', counts,uniq);
+        })
+    }
+
+    socket.on('getCount',function(s){
+        updateCount(s);
+    })
+
+    socket.on('newUser', function (data) {
+        if (data != null) {
+            socket.nickname = data;
+            users[data] = socket;
+            updateUserLists();
+        }
+    })
+
+
+    var sendStatus = function (s) {
+        socket.emit('status', s)
+    }
+
+    var output = function (data) {
+        if (data.to in users) {
+            users[data.to].emit('output', data);
+
+            //db.update('chat',{_id:data._id},{read:true});
+        }
+        users[data.from].emit('output', data);
+
+    }
+    socket.on('input', function (data) {
+        db.insert('chat', data, function (s) {
+
+            if (s) {
+                output(s);
+                //updateCount(s.from);
+                sendStatus({
+                    message: "Message sent",
+                    clear: 'true',
+                })
+            }
+        })
+
+
+    });
+
+  /*  socket.on('up',function(data){
+        db.update('chat', {from: data.to, to: data.from, read: false}, {read: true});
+    })*/
+
+    socket.on('getChat', function (data) {
+
+        db.getChat(data.from, data.to, function (s) {
+            socket.emit('chtLog', s);
+            db.update('chat', {from: data.to, to: data.from, read: false}, {read: true});
+
+            //updateCount(data.from);
+        })
+
+    })
+
+    socket.on('disconnect', function (data) {
+        if (!socket.nickname) return;
+        delete users[socket.nickname];
+        updateUserLists();
+    });
+})
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port);
+server.on('error', onError);
+server.on('listening', onListening);
+
+/**
+ * Normalize a port into a number, string, or false.
+ */
+
+function normalizePort(val) {
+    var port = parseInt(val, 10);
+
+    if (isNaN(port)) {
+        // named pipe
+        return val;
+    }
+
+    if (port >= 0) {
+        // port number
+        return port;
+    }
+
+    return false;
+}
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
+
+function onError(error) {
+    if (error.syscall !== 'listen') {
+        throw error;
+    }
+
+    var bind = typeof port === 'string'
+        ? 'Pipe ' + port
+        : 'Port ' + port;
+
+    // handle specific listen errors with friendly messages
+    switch (error.code) {
+        case 'EACCES':
+            console.error(bind + ' requires elevated privileges');
+            process.exit(1);
+            break;
+        case 'EADDRINUSE':
+            console.error(bind + ' is already in use');
+            process.exit(1);
+            break;
+        default:
+            throw error;
+    }
+}
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
+
+function onListening() {
+    var addr = server.address();
+    var bind = typeof addr === 'string'
+        ? 'pipe ' + addr
+        : 'port ' + addr.port;
+    debug('Listening on ' + bind);
+}

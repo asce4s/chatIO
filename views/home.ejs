@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <% include templates/header.ejs %>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="javascripts/home.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+
+    <div class="col-md-8" id="main">
+        <div class="row">
+            <div class="col-md-4" id="users">
+                <div class="panel with-nav-tabs panel-default">
+                    <div class="panel-heading">
+                        <ul class="nav nav-tabs">
+                            <li class="active"><a href="#allusers" data-toggle="tab">All</a></li>
+                            <li><a href="#onlineusers" data-toggle="tab">Online</a></li>
+
+                        </ul>
+                        <span id="nme"><span class="glyphicon glyphicon-user" aria-hidden="true" title="<%= user %>" ></span><%= user %></span><a href="/logout" id="logout"><span class="glyphicon glyphicon-off" aria-hidden="true" title="Logout"></span></a>
+                    </div>
+                    <div class="panel-body">
+                        <div class="tab-content">
+                            <div class="tab-pane fade in active" id="allusers">
+                                <ul></ul>
+
+                            </div>
+                            <div class="tab-pane fade" id="onlineusers">
+                                <ul></ul>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8" id="chat">
+                <div id="chatWindow"></div>
+                <textarea id="msg"></textarea>
+                <span id="stat">&nbsp</span>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<center>&copy Copyright by Supun sasanka</center>
+</body>
+</html>

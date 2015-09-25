@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <% include templates/header.ejs %>
+    <script src="javascripts/index.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+    <h2 id="Login-title">Sign in to continue</h2>
+
+    <div class="col-md-3" id="login-wrap">
+        <img src="images/user.png" class="img-circle" id="userAvt">
+
+        <form id="loginform">
+            <input type="hidden" name="fid" value="login">
+
+            <div class="form-group">
+                <input type="text" name="uName" placeholder="Username" required class="form-control">
+            </div>
+            <div class="form-group">
+                <input type="password" name="uPass" required placeholder="Password" class="form-control">
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input type="checkbox" name="remember"> Remember me
+                    </label>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <input type="submit" name="submit" value="Login" class="form-control btn btn-primary">
+            </div>
+            <div class="form-group has-error">
+                <label class="control-label" id="lerr"></label>
+            </div>
+
+        </form>
+
+    </div>
+    <a data-toggle="modal" data-target="#reg" id="cAccount">Create account</a>
+</div>
+
+
+<div class="modal fade" id="reg">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Create account</h4>
+            </div>
+            <div class="modal-body">
+                <form id="regform" validate>
+                    <input type="hidden" name="fid" value="reg">
+
+                    <div class="form-group uvalErr">
+                        <input type="text" name="uName" placeholder="Username" required class="form-control">
+                        <label class="control-label" id="uerr"></label>
+                    </div>
+                    <div class="form-group evalErr">
+
+                        <input type="email" name="email" placeholder="Email" required class="form-control">
+                        <label class="control-label" id="eerr"></label>
+                    </div>
+                    <div class="form-group pvalErr">
+                        <input type="password" name="uPass" required placeholder="Password" class="form-control">
+                    </div>
+                    <div class="form-group pvalErr">
+
+                        <input type="password" name="ucPass" required placeholder="Confirm Password"
+                               class="form-control">
+                        <label class="control-label" id="perr"></label>
+                    </div>
+                    <div class="form-group">
+                        <input type="submit" name="submit" value="Create My Account"
+                               class="form-control btn btn-primary">
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="thnx">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <h4>Thank you for registering ..!</h4>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
+
