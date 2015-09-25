@@ -10,7 +10,7 @@ var index = require('./routes/index');
 var home = require('./routes/home');
 
 var app = express();
-global.mongourl='mongodb://localhost/chatIO';
+global.mongourl='mongodb://asce4s:sasa321@ds035623.mongolab.com:35623/chat';
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
