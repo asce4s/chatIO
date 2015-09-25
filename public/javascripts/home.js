@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 
     try {
-        var socket = io.connect("http://localhost:3000");
+        var socket = io.connect("http://asce4s.herokuapp.com/");
         // var socket=io.of('/my');
 
     } catch (e) {
