@@ -54,7 +54,7 @@ module.exports.createUser = function (req, status) {
             status({
                 fid: 'reg',
                 eType: 'success',
-                msg: 'Account Created Sucessfully',
+                msg: 'Account Created Successfully',
             })
 
             db.close();
