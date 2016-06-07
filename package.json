@@ -18,5 +18,18 @@
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",
     "socket.io": "^1.3.6"
-  }
+  },
+  "main": "app.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/asce4s/chatIO.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/asce4s/chatIO/issues"
+  },
+  "homepage": "https://github.com/asce4s/chatIO#readme",
+  "keywords": [
+    "ChatIO"
+  ]
 }
